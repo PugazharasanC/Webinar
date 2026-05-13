@@ -45,8 +45,8 @@ const Register = () => {
       toast.success("Registered Successfully");
       navigate("/dashboard");
     } catch (error) {
-        console.log(error)
-      toast.error(error.message);
+      console.log(error);
+      toast.error("Something went wrong, try again later");
     }
   };
 
