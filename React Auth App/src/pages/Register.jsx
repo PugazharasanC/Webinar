@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { motion } from "framer-motion";
-
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import api from "../api/axios";
@@ -42,10 +42,11 @@ const Register = () => {
 
       const { data } = await api.post("/auth/register", formDataToSend);
       setUser(data.user);
-
+      toast.success("Registered Successfully");
       navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+        console.log(error)
+      toast.error(error.message);
     }
   };
 

@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import api from "../api/axios";
 
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,11 +33,11 @@ const Login = () => {
       const { data } = await api.post("/auth/login", formData);
 
       setUser(data.user);
-
+      toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 

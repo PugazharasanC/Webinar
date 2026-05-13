@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -20,12 +21,12 @@ const Dashboard = () => {
       setLoading(true);
 
       const { data } = await api.get("/auth/me");
-
+      toast.success("Data fetched successfully");
       setUserDetails(data.user);
     } catch (error) {
       console.log(error);
 
-      alert(error.response?.data?.message);
+      toast.error(error.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -39,7 +40,7 @@ const Dashboard = () => {
       await api.get("/auth/logout");
 
       setUser(null);
-
+      toast.success("Logged out successfully");
       navigate("/login");
     } catch (error) {
       console.log(error);

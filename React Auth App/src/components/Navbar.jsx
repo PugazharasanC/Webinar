@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
 import api from "../api/axios";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, setUser } = useAuth();
@@ -10,7 +11,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await api.get("/auth/logout");
-
+      toast.success("Logged out successfully");
       setUser(null);
     } catch (error) {
       console.log(error);

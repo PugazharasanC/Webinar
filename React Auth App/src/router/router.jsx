@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 
 import ProtectedRoute from "../guards/ProtectedRoute";
+import GuestRoute from "../guards/GuestRoute";
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,20 @@ const router = createBrowserRouter([
 
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <GuestRoute>
+        <Login />
+      </GuestRoute>
+    ),
   },
 
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <GuestRoute>
+        <Register />
+      </GuestRoute>
+    ),
   },
 
   {
