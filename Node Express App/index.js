@@ -9,11 +9,10 @@ import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/auth.routes.js";
 
 const app = express();
-
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://webinar-may13.netlify.app/"],
+    origin: process.env.CLIENT_URL,
     credentials: true,
   }),
 );
